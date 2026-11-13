@@ -18,3 +18,8 @@ website/out/
 # Exports / local scans
 drivers_scan.json
 *.log
+
+# Agent / editor noise
+website/AGENTS.md
+.cursor/
+
