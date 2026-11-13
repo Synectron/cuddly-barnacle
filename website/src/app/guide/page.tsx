@@ -17,46 +17,48 @@ const steps = [
   },
   {
     title: "Run as Administrator",
-    body: "Right-click the EXE → Run as administrator. Elevation is required to initiate and update drivers.",
+    body: "Right-click → Run as administrator. Elevation is required to initiate and update drivers.",
   },
   {
     title: "Update everything",
-    body: "Choose menu option 8, or run DriverScanInit.exe --update for Windows Update plus OEM/GPU vendors.",
+    body: "Menu option 8, or DriverScanInit.exe --update for Windows Update plus OEM/GPU vendors.",
   },
   {
     title: "Reboot if prompted",
-    body: "Some chipset, BIOS, or GPU packages need a restart before the new drivers load.",
+    body: "Chipset, BIOS, and GPU packages often need a restart before they finish loading.",
   },
 ];
 
 export default function GuidePage() {
   return (
-    <main className="flex flex-1 flex-col bg-paper">
+    <main className="flex flex-1 flex-col bg-bg">
       <SiteHeader />
-      <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-12 md:px-8">
-        <p className="font-mono text-xs uppercase tracking-[0.22em] text-accent">Guide</p>
-        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-ink md:text-5xl">
+      <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-14 md:px-8">
+        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent">Guide</p>
+        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-[-0.04em] text-ink md:text-6xl">
           How to run DriverScan
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-muted">
-          Works on Windows 10/11. Keep internet on so Windows Update and vendor tools can download packages.
+        <p className="mt-5 text-lg leading-relaxed text-muted">
+          Windows 10/11. Keep internet on so Windows Update and vendor tools can download packages.
         </p>
 
-        <ol className="mt-12 space-y-10">
+        <ol className="mt-14 space-y-10">
           {steps.map((step, i) => (
-            <li key={step.title} className="grid gap-2 border-t border-[var(--line)] pt-6">
+            <li key={step.title} className="border-t border-[var(--line)] pt-7">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
-                Step {i + 1}
+                Step {String(i + 1).padStart(2, "0")}
               </p>
-              <h2 className="font-display text-2xl font-bold text-ink">{step.title}</h2>
-              <p className="leading-relaxed text-muted">{step.body}</p>
+              <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.03em] text-ink">
+                {step.title}
+              </h2>
+              <p className="mt-3 leading-relaxed text-muted">{step.body}</p>
             </li>
           ))}
         </ol>
 
-        <section className="mt-14 border border-[var(--line)] bg-white/70 p-6">
+        <section className="mt-14 border border-[var(--line)] bg-white/60 p-6 md:p-8">
           <h2 className="font-display text-xl font-bold text-ink">Useful commands</h2>
-          <pre className="mt-4 overflow-x-auto font-mono text-sm leading-relaxed text-ink-soft">
+          <pre className="mt-4 overflow-x-auto font-mono text-sm leading-relaxed text-ink-2">
 {`DriverScanInit.exe --detect
 DriverScanInit.exe --list-updates
 DriverScanInit.exe --update-wu
@@ -65,16 +67,14 @@ DriverScanInit.exe --update`}
           </pre>
         </section>
 
-        <p className="mt-10">
-          <a href={siteConfig.downloadPath} download className="btn-primary">
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <a href={siteConfig.downloadPath} download className="btn btn-primary">
             Download DriverScanInit.exe
           </a>
-        </p>
-        <p className="mt-6">
-          <Link href="/" className="text-sm font-medium text-accent hover:text-accent-deep">
+          <Link href="/" className="text-sm font-semibold text-accent hover:text-accent-2">
             ← Back home
           </Link>
-        </p>
+        </div>
       </div>
       <SiteFooter />
     </main>

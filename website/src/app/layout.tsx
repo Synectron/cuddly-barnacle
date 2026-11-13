@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Syne, Figtree, IBM_Plex_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const display = Syne({
+const display = Bricolage_Grotesque({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
 });
 
-const body = Figtree({
+const body = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -41,9 +41,7 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.org, url: siteConfig.orgUrl }],
   creator: siteConfig.org,
   publisher: siteConfig.org,
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -79,17 +77,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     operatingSystem: "Windows 10, Windows 11",
     softwareVersion: siteConfig.version,
     downloadUrl: `${siteConfig.url}${siteConfig.downloadPath}`,
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     description: siteConfig.description,
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.org,
-      url: siteConfig.orgUrl,
-    },
+    publisher: { "@type": "Organization", name: siteConfig.org, url: siteConfig.orgUrl },
   };
 
   return (
@@ -97,7 +87,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-paper text-ink">
+      <body className="flex min-h-full flex-col bg-bg text-ink">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

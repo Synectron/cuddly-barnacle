@@ -6,32 +6,36 @@ import { siteConfig } from "@/lib/site";
 export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col">
-      <div className="relative isolate min-h-[100svh] overflow-hidden">
+      <section className="relative isolate min-h-[100svh] overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "radial-gradient(1000px 520px at 12% -10%, rgba(11,127,134,0.12), transparent 55%), linear-gradient(180deg, #f7f9fb 0%, var(--paper) 40%, #e8eef4 100%)",
+              "radial-gradient(900px 500px at 8% 0%, rgba(15,108,189,0.14), transparent 50%), linear-gradient(180deg, #f8fafc 0%, var(--bg) 42%, #e8eef5 100%)",
           }}
         />
+        <div aria-hidden className="noise pointer-events-none absolute inset-0" />
 
         <SiteHeader />
 
-        <section className="relative z-10 grid min-h-[calc(100svh-4.75rem)] w-full items-stretch md:grid-cols-[minmax(0,36rem)_1fr] lg:grid-cols-[minmax(0,40rem)_1fr]">
-          <div className="mx-auto flex w-full max-w-6xl flex-col justify-center px-6 py-10 md:mx-0 md:ml-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))] md:max-w-none md:px-0 md:py-16 md:pr-12">
-            <h1 className="anim-rise font-display text-[clamp(3.6rem,10vw,6.8rem)] font-extrabold leading-[0.88] tracking-[-0.045em] text-ink">
+        <div className="relative z-10 grid min-h-[calc(100svh-4.5rem)] lg:grid-cols-[minmax(22rem,0.92fr)_1.08fr]">
+          <div className="flex flex-col justify-center px-6 pb-12 pt-8 md:px-10 lg:pl-[max(2rem,calc((100vw-72rem)/2+2rem))] lg:pr-12 lg:pt-4">
+            <p className="anim-1 font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
+              Opuskiln utility
+            </p>
+            <h1 className="anim-1 mt-4 font-display text-[clamp(3.8rem,11vw,7.2rem)] font-extrabold leading-[0.86] tracking-[-0.05em] text-ink">
               {siteConfig.name}
             </h1>
-            <p className="anim-rise-2 mt-6 max-w-md text-lg leading-relaxed text-muted md:text-xl">
-              Scan, start, and update Windows drivers — including OEM and GPU
-              vendors.
+            <p className="anim-2 mt-6 max-w-[28rem] text-[1.15rem] leading-relaxed text-muted md:text-[1.25rem]">
+              Scan stuck devices, start dead drivers, and pull the latest updates from Windows and
+              the big OEM/GPU vendors.
             </p>
-            <div className="anim-rise-3 mt-9 flex flex-wrap items-center gap-3">
-              <a href={siteConfig.downloadPath} download className="btn-primary">
+            <div className="anim-3 mt-9 flex flex-wrap gap-3">
+              <a href={siteConfig.downloadPath} download className="btn btn-primary">
                 Download for Windows
               </a>
-              <Link href="/guide" className="btn-secondary">
+              <Link href="/guide" className="btn btn-ghost">
                 How to run
               </Link>
             </div>
@@ -40,55 +44,71 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="relative min-h-[360px] w-full md:min-h-full">
+          <div className="relative min-h-[440px] lg:min-h-full">
             <HeroStage />
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <section className="border-t border-[var(--line)] bg-paper">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8">
-          <p className="font-mono text-xs uppercase tracking-[0.22em] text-accent">
-            What it does
-          </p>
-          <h2 className="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
-            One utility for stuck devices and outdated drivers.
-          </h2>
-          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
+      <section className="border-t border-[var(--line)] bg-bg">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-24">
+          <div className="max-w-2xl">
+            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent">Workflow</p>
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-[-0.03em] text-ink md:text-5xl">
+              Three moves. One elevated EXE.
+            </h2>
+          </div>
+
+          <div className="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-3">
             {[
               {
+                n: "01",
                 title: "Scan",
-                body: "Inventory present PnP devices, status codes, and driver versions in one pass.",
+                body: "Map present PnP devices, status codes, and driver versions before you change anything.",
               },
               {
+                n: "02",
                 title: "Initiate",
-                body: "Enable and start problem or disabled devices when Windows leaves them stuck.",
+                body: "Enable and start problem or disabled devices Windows left half-asleep.",
               },
               {
+                n: "03",
                 title: "Update",
-                body: "Pull Windows Update drivers and run Lenovo, Dell, HP, Intel, NVIDIA, and AMD updaters.",
+                body: "Install Windows Update drivers, then kick Lenovo, Dell, HP, Intel, NVIDIA, or AMD tools.",
               },
             ].map((item) => (
-              <div key={item.title} className="border-t border-[var(--line)] pt-5">
-                <h3 className="font-display text-2xl font-bold text-ink">{item.title}</h3>
-                <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{item.body}</p>
-              </div>
+              <article key={item.n} className="relative pt-2">
+                <p className="font-mono text-sm text-accent">{item.n}</p>
+                <h3 className="mt-3 font-display text-3xl font-bold tracking-[-0.03em] text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-3 max-w-sm text-[0.98rem] leading-relaxed text-muted">{item.body}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-[var(--line)] bg-paper-deep/60">
-        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-14 md:flex-row md:items-center md:px-8">
-          <div>
-            <h2 className="font-display text-2xl font-bold tracking-tight text-ink md:text-3xl">
-              Free Windows download
+      <section className="relative overflow-hidden border-t border-[var(--line)] bg-ink text-[#edf2f7]">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-60"
+          style={{
+            background:
+              "radial-gradient(700px 320px at 90% 20%, rgba(15,108,189,0.35), transparent 60%)",
+          }}
+        />
+        <div className="relative mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-6 py-16 md:flex-row md:items-center md:px-8 md:py-20">
+          <div className="max-w-xl">
+            <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
+              Grab the EXE and run elevated.
             </h2>
-            <p className="mt-2 max-w-xl text-muted">
-              No installer account. Run elevated, then use --update for Windows Update plus vendor tools.
+            <p className="mt-3 text-[#b7c3cf]">
+              Free download. No account. Use <span className="font-mono text-[#9ec5ef]">--update</span>{" "}
+              when you want Windows Update plus vendor updaters in one pass.
             </p>
           </div>
-          <a href={siteConfig.downloadPath} download className="btn-primary shrink-0">
+          <a href={siteConfig.downloadPath} download className="btn btn-primary bg-white !text-ink hover:!bg-accent hover:!text-white">
             Get DriverScanInit.exe
           </a>
         </div>

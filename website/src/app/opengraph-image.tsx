@@ -16,30 +16,23 @@ export default function OpenGraphImage() {
           justifyContent: "space-between",
           padding: "64px",
           background:
-            "radial-gradient(900px 480px at 85% 15%, rgba(11,127,134,0.18), transparent 55%), linear-gradient(145deg, #eef2f6 0%, #e2e8f0 55%, #dce7ec 100%)",
-          color: "#10151c",
+            "radial-gradient(800px 420px at 90% 10%, rgba(15,108,189,0.22), transparent 55%), linear-gradient(145deg, #f3f5f8 0%, #e7ecf2 100%)",
+          color: "#0e151b",
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            fontSize: 26,
-            letterSpacing: 6,
-            color: "#0b7f86",
-            textTransform: "uppercase",
-          }}
-        >
+        <div style={{ fontSize: 24, letterSpacing: 6, color: "#0f6cbd", textTransform: "uppercase" }}>
           Opuskiln
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          <div style={{ fontSize: 96, fontWeight: 800, letterSpacing: -3, lineHeight: 0.95 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ fontSize: 96, fontWeight: 800, letterSpacing: -4, lineHeight: 0.92 }}>
             DriverScan
           </div>
-          <div style={{ fontSize: 34, color: "#5c6b7a", maxWidth: 780 }}>
+          <div style={{ fontSize: 32, color: "#5d6b78", maxWidth: 760 }}>
             Scan, initiate, and update Windows drivers — including OEM and GPU vendors.
           </div>
         </div>
-        <div style={{ fontSize: 24, color: "#0b7f86" }}>driverscan.opuskiln.com</div>
+        <div style={{ fontSize: 22, color: "#0f6cbd" }}>driverscan.opuskiln.com</div>
       </div>
     ),
     { ...size },

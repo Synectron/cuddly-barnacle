@@ -1,25 +1,32 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site";
 
-export function SiteHeader() {
+export function SiteHeader({ tone = "light" }: { tone?: "light" | "overlay" }) {
+  const muted = tone === "overlay" ? "text-white/70 hover:text-white" : "text-muted hover:text-ink";
+  const brand = tone === "overlay" ? "text-white" : "text-ink";
+
   return (
     <header className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 md:px-8">
-      <Link href="/" className="font-display text-[1.35rem] font-bold tracking-tight text-ink">
+      <Link href="/" className={`font-display text-lg font-bold tracking-[-0.03em] ${brand}`}>
         {siteConfig.name}
       </Link>
-      <nav className="flex items-center gap-6 text-sm font-medium text-muted">
-        <Link href="/guide" className="transition-colors hover:text-ink">
+      <nav className="flex items-center gap-5 text-sm font-semibold md:gap-7">
+        <Link href="/guide" className={`transition-colors ${muted}`}>
           Guide
         </Link>
         <a
           href={siteConfig.github}
-          className="transition-colors hover:text-ink"
+          className={`transition-colors ${muted}`}
           target="_blank"
           rel="noreferrer"
         >
           GitHub
         </a>
-        <a href={siteConfig.downloadPath} download className="btn-primary !px-4 !py-2 text-sm">
+        <a
+          href={siteConfig.downloadPath}
+          download
+          className="btn btn-primary !min-h-9 !px-4 !text-sm"
+        >
           Download
         </a>
       </nav>
@@ -29,7 +36,7 @@ export function SiteHeader() {
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--line)] bg-paper">
+    <footer className="border-t border-[var(--line)] bg-bg">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">
         <p>
           © {new Date().getFullYear()} {siteConfig.org}. {siteConfig.name} for Windows.
