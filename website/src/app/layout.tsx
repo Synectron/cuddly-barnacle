@@ -71,6 +71,9 @@ export const metadata: Metadata = {
     },
   },
   category: "technology",
+  other: {
+    "msapplication-TileColor": "#0f6cbd",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

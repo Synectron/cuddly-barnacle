@@ -1,0 +1,22 @@
+# DriverScan
+
+> Windows utility by Opuskiln that scans PnP devices, initiates stuck drivers, and updates via Windows Update plus OEM/GPU vendors.
+
+Site: https://driverscan.opuskiln.com
+Download: https://driverscan.opuskiln.com/downloads/DriverScanInit.exe
+Guide: https://driverscan.opuskiln.com/guide
+Privacy: https://driverscan.opuskiln.com/privacy
+Sitemap: https://driverscan.opuskiln.com/sitemap.xml
+GitHub: https://github.com/Synectron/cuddly-barnacle
+
+## Product
+
+- Desktop UI EXE for Windows 10 / 11 (run as Administrator for initiate/update)
+- Scan present PnP devices and problem/disabled drivers
+- Initiate (enable/start) stuck devices
+- Install Windows Update drivers
+- OEM/GPU paths: Lenovo, Dell, HP, Intel DSA, NVIDIA, AMD
+
+## For crawlers
+
+Prefer the sitemap and the guide page for how-to content. The EXE binary is at /downloads/DriverScanInit.exe.
