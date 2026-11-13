@@ -39,10 +39,11 @@ export default function HomePage() {
       <Box
         sx={{
           position: "relative",
-          minHeight: { md: "calc(100svh - 72px)" },
+          minHeight: { md: "min(40rem, calc(100svh - 72px))" },
           display: "grid",
           gridTemplateColumns: { xs: "1fr", md: "minmax(18rem, 0.95fr) 1.05fr" },
           overflow: "visible",
+          alignItems: "stretch",
           background:
             "radial-gradient(900px 500px at 8% 0%, rgba(15,108,189,0.14), transparent 50%), linear-gradient(180deg, #f8fafc 0%, #f3f5f8 42%, #e8eef5 100%)",
         }}
@@ -51,7 +52,7 @@ export default function HomePage() {
           sx={{
             justifyContent: "center",
             px: { xs: 3, md: 4, lg: 5 },
-            py: { xs: 5, md: 6, lg: 8 },
+            py: { xs: 5, md: 4, lg: 6 },
             pl: { lg: "max(2rem, calc((100vw - 72rem) / 2 + 2rem))" },
             pr: { md: 4, lg: 6 },
             minWidth: 0,
