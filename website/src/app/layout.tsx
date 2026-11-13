@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Plus_Jakarta_Sans,
+  IBM_Plex_Mono,
+} from "next/font/google";
 import { ThemeRegistry } from "@/components/ThemeRegistry";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";

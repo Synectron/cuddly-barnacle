@@ -46,18 +46,18 @@ DriverScanInit.exe --update
 DriverScanInit.exe --export drivers_scan.json
 ```
 
-| Flag | Purpose |
-|------|---------|
-| `--detect` | Show OEM / GPU detection |
-| `--scan` | List all present devices |
-| `--problems` | Problem / disabled only |
-| `--initiate` | Enable/start problem & disabled devices |
-| `--list-updates` | List Windows Update drivers |
-| `--update-wu` | Install Windows Update drivers only |
-| `--update-vendors` | OEM / GPU vendor updaters only |
-| `--update` | Windows Update **and** vendor updaters |
-| `--export PATH` | Write scan JSON |
-| `--json` | Print scan as JSON |
+| Flag               | Purpose                                 |
+| ------------------ | --------------------------------------- |
+| `--detect`         | Show OEM / GPU detection                |
+| `--scan`           | List all present devices                |
+| `--problems`       | Problem / disabled only                 |
+| `--initiate`       | Enable/start problem & disabled devices |
+| `--list-updates`   | List Windows Update drivers             |
+| `--update-wu`      | Install Windows Update drivers only     |
+| `--update-vendors` | OEM / GPU vendor updaters only          |
+| `--update`         | Windows Update **and** vendor updaters  |
+| `--export PATH`    | Write scan JSON                         |
+| `--json`           | Print scan as JSON                      |
 
 Reboot if prompted after BIOS/chipset/GPU packages.
 

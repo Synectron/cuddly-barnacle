@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/guide" },
 };
 
-export default function GuideLayout({ children }: { children: React.ReactNode }) {
+export default function GuideLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return children;
 }
