@@ -46,7 +46,7 @@ export default function HomePage() {
           display: "grid",
           gridTemplateColumns: {
             xs: "1fr",
-            md: "minmax(18rem, 0.95fr) 1.05fr",
+            md: "minmax(22rem, 1.1fr) 0.9fr",
           },
           overflow: "visible",
           alignItems: "stretch",
@@ -72,15 +72,16 @@ export default function HomePage() {
             variant="h1"
             sx={{
               fontSize: {
-                xs: "clamp(2.75rem, 12vw, 3.75rem)",
-                sm: "clamp(3.5rem, 9vw, 5rem)",
-                md: "clamp(4.25rem, 6.5vw, 5.75rem)",
+                xs: "clamp(2.6rem, 11vw, 3.5rem)",
+                sm: "clamp(3.25rem, 8vw, 4.5rem)",
+                md: "clamp(3.5rem, 4.6vw, 5rem)",
               },
               color: "text.primary",
-              lineHeight: 1.12,
-              py: "0.06em",
+              lineHeight: 1.05,
+              py: "0.04em",
               overflow: "visible",
-              wordBreak: "break-word",
+              whiteSpace: "nowrap",
+              maxWidth: "100%",
             }}
           >
             {siteConfig.name}
