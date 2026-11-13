@@ -32,7 +32,7 @@ export default function PrivacyPage() {
         <p>
           Hosting analytics, if enabled later on Vercel, would process standard
           request metadata such as pages visited and approximate region. No
-          driver inventory is uploaded to SoftCoe by the current build.
+          driver inventory is uploaded to Opuskiln by the current build.
         </p>
         <p>
           Questions: visit{" "}

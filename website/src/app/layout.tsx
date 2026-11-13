@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "Intel DSA",
     "NVIDIA driver update",
     "DriverScan",
-    "SoftCoe",
+    "Opuskiln",
   ],
   authors: [{ name: siteConfig.org, url: siteConfig.orgUrl }],
   creator: siteConfig.org,

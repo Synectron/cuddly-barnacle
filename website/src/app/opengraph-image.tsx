@@ -22,7 +22,7 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ fontSize: 28, letterSpacing: 6, color: "#2fd6a2", textTransform: "uppercase" }}>
-          SoftCoe
+          Opuskiln
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div style={{ fontSize: 96, fontWeight: 800, letterSpacing: -3, lineHeight: 0.95 }}>
@@ -32,7 +32,7 @@ export default function OpenGraphImage() {
             Scan, initiate, and update Windows drivers — including OEM and GPU vendors.
           </div>
         </div>
-        <div style={{ fontSize: 24, color: "#2fd6a2" }}>driverscan.softcoe.com</div>
+        <div style={{ fontSize: 24, color: "#2fd6a2" }}>driverscan.opuskiln.com</div>
       </div>
     ),
     { ...size },

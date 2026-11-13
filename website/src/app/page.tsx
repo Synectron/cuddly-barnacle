@@ -46,7 +46,7 @@ export default function HomePage() {
       <section className="relative z-10 mx-auto grid min-h-[calc(100vh-5.5rem)] w-full max-w-6xl items-center gap-12 px-6 pb-16 pt-6 md:grid-cols-[1.05fr_0.95fr] md:px-8 md:pb-20">
         <div>
           <p className="anim-rise mb-4 font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.28em] text-signal">
-            SoftCoe · Windows utility
+            Opuskiln · Windows utility
           </p>
           <h1 className="anim-rise-delay font-[family-name:var(--font-display)] text-[clamp(3.4rem,9vw,6.4rem)] font-extrabold leading-[0.92] tracking-[-0.04em] text-mist">
             {siteConfig.name}
