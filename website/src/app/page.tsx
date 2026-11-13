@@ -33,7 +33,10 @@ const steps = [
 
 export default function HomePage() {
   return (
-    <Box component="main" sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
+    <Box
+      component="main"
+      sx={{ display: "flex", flexDirection: "column", flex: 1 }}
+    >
       <SiteHeader />
 
       <Box
@@ -41,7 +44,10 @@ export default function HomePage() {
           position: "relative",
           minHeight: { md: "min(40rem, calc(100svh - 72px))" },
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "minmax(18rem, 0.95fr) 1.05fr" },
+          gridTemplateColumns: {
+            xs: "1fr",
+            md: "minmax(18rem, 0.95fr) 1.05fr",
+          },
           overflow: "visible",
           alignItems: "stretch",
           background:
@@ -81,12 +87,21 @@ export default function HomePage() {
           </Typography>
           <Typography
             color="text.secondary"
-            sx={{ mt: 3, maxWidth: 460, fontSize: { xs: "1.1rem", md: "1.25rem" }, lineHeight: 1.6 }}
+            sx={{
+              mt: 3,
+              maxWidth: 460,
+              fontSize: { xs: "1.1rem", md: "1.25rem" },
+              lineHeight: 1.6,
+            }}
           >
-            Scan stuck devices, start dead drivers, and pull the latest updates from Windows and the
-            big OEM/GPU vendors.
+            Scan stuck devices, start dead drivers, and pull the latest updates
+            from Windows and the big OEM/GPU vendors.
           </Typography>
-          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ mt: 4 }}>
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.5}
+            sx={{ mt: 4 }}
+          >
             <Button
               component="a"
               href={siteConfig.downloadPath}
@@ -112,7 +127,11 @@ export default function HomePage() {
           <Typography
             variant="caption"
             color="text.secondary"
-            sx={{ mt: 2.5, fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}
+            sx={{
+              mt: 2.5,
+              fontFamily: "var(--font-mono)",
+              letterSpacing: "0.04em",
+            }}
           >
             v{siteConfig.version} · DriverScanInit.exe · Run as Administrator
           </Typography>
@@ -123,12 +142,25 @@ export default function HomePage() {
         </Box>
       </Box>
 
-      <Box sx={{ borderTop: "1px solid", borderColor: "divider", py: { xs: 8, md: 12 } }}>
+      <Box
+        sx={{
+          borderTop: "1px solid",
+          borderColor: "divider",
+          py: { xs: 8, md: 12 },
+        }}
+      >
         <Container maxWidth="lg">
           <Typography variant="overline" color="primary">
             Workflow
           </Typography>
-          <Typography variant="h2" sx={{ mt: 1.5, maxWidth: 640, fontSize: { xs: "2rem", md: "3rem" } }}>
+          <Typography
+            variant="h2"
+            sx={{
+              mt: 1.5,
+              maxWidth: 640,
+              fontSize: { xs: "2rem", md: "3rem" },
+            }}
+          >
             Three moves. One elevated EXE.
           </Typography>
           <Grid container spacing={{ xs: 4, md: 6 }} sx={{ mt: 2 }}>
@@ -140,7 +172,10 @@ export default function HomePage() {
                 <Typography variant="h3" sx={{ mt: 1, fontSize: "2rem" }}>
                   {step.title}
                 </Typography>
-                <Typography color="text.secondary" sx={{ mt: 1.5, maxWidth: 360, lineHeight: 1.7 }}>
+                <Typography
+                  color="text.secondary"
+                  sx={{ mt: 1.5, maxWidth: 360, lineHeight: 1.7 }}
+                >
                   {step.body}
                 </Typography>
               </Grid>
@@ -171,12 +206,18 @@ export default function HomePage() {
           }}
         >
           <Box sx={{ maxWidth: 560 }}>
-            <Typography variant="h2" sx={{ fontSize: { xs: "2rem", md: "2.5rem" }, color: "inherit" }}>
+            <Typography
+              variant="h2"
+              sx={{ fontSize: { xs: "2rem", md: "2.5rem" }, color: "inherit" }}
+            >
               Grab the EXE and run elevated.
             </Typography>
             <Typography sx={{ mt: 1.5, color: "#b7c3cf" }}>
               Free download. No account. Use{" "}
-              <Box component="span" sx={{ fontFamily: "var(--font-mono)", color: "#9ec5ef" }}>
+              <Box
+                component="span"
+                sx={{ fontFamily: "var(--font-mono)", color: "#9ec5ef" }}
+              >
                 --update
               </Box>{" "}
               when you want Windows Update plus vendor updaters in one pass.
