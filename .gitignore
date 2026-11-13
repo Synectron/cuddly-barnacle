@@ -10,6 +10,11 @@ __pycache__/
 .venv/
 venv/
 
+# Website
+website/node_modules/
+website/.next/
+website/out/
+
 # Exports / local scans
 drivers_scan.json
 *.log
