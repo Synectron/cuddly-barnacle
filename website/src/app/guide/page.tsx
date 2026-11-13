@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+"use client";
+
+import DownloadIcon from "@mui/icons-material/Download";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import NextLink from "next/link";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { siteConfig } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Guide",
-  description:
-    "How to download, run, and update Windows drivers with DriverScan — including OEM and GPU vendor updaters.",
-  alternates: { canonical: "/guide" },
-};
 
 const steps = [
   {
@@ -31,52 +33,79 @@ const steps = [
 
 export default function GuidePage() {
   return (
-    <main className="flex flex-1 flex-col bg-bg">
+    <Box component="main" sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
       <SiteHeader />
-      <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-14 md:px-8">
-        <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent">Guide</p>
-        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-[-0.04em] text-ink md:text-6xl">
+      <Container maxWidth="md" sx={{ py: { xs: 6, md: 10 }, flex: 1 }}>
+        <Typography variant="overline" color="primary">
+          Guide
+        </Typography>
+        <Typography variant="h1" sx={{ mt: 1, fontSize: { xs: "2.6rem", md: "3.8rem" } }}>
           How to run DriverScan
-        </h1>
-        <p className="mt-5 text-lg leading-relaxed text-muted">
+        </Typography>
+        <Typography color="text.secondary" sx={{ mt: 2, fontSize: "1.15rem", lineHeight: 1.7 }}>
           Windows 10/11. Keep internet on so Windows Update and vendor tools can download packages.
-        </p>
+        </Typography>
 
-        <ol className="mt-14 space-y-10">
+        <Stack spacing={4} sx={{ mt: 6 }}>
           {steps.map((step, i) => (
-            <li key={step.title} className="border-t border-[var(--line)] pt-7">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+            <Box key={step.title} sx={{ borderTop: "1px solid", borderColor: "divider", pt: 3 }}>
+              <Typography variant="overline" color="primary">
                 Step {String(i + 1).padStart(2, "0")}
-              </p>
-              <h2 className="mt-2 font-display text-3xl font-bold tracking-[-0.03em] text-ink">
+              </Typography>
+              <Typography variant="h3" sx={{ mt: 1, fontSize: "1.8rem" }}>
                 {step.title}
-              </h2>
-              <p className="mt-3 leading-relaxed text-muted">{step.body}</p>
-            </li>
+              </Typography>
+              <Typography color="text.secondary" sx={{ mt: 1.25, lineHeight: 1.7 }}>
+                {step.body}
+              </Typography>
+            </Box>
           ))}
-        </ol>
+        </Stack>
 
-        <section className="mt-14 border border-[var(--line)] bg-white/60 p-6 md:p-8">
-          <h2 className="font-display text-xl font-bold text-ink">Useful commands</h2>
-          <pre className="mt-4 overflow-x-auto font-mono text-sm leading-relaxed text-ink-2">
+        <Paper
+          variant="outlined"
+          sx={{ mt: 6, p: { xs: 2.5, md: 3.5 }, bgcolor: "rgba(255,255,255,0.7)" }}
+        >
+          <Typography variant="h3" sx={{ fontSize: "1.25rem" }}>
+            Useful commands
+          </Typography>
+          <Box
+            component="pre"
+            sx={{
+              mt: 2,
+              m: 0,
+              overflowX: "auto",
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.9rem",
+              lineHeight: 1.7,
+              color: "text.primary",
+            }}
+          >
 {`DriverScanInit.exe --detect
 DriverScanInit.exe --list-updates
 DriverScanInit.exe --update-wu
 DriverScanInit.exe --update-vendors
 DriverScanInit.exe --update`}
-          </pre>
-        </section>
+          </Box>
+        </Paper>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <a href={siteConfig.downloadPath} download className="btn btn-primary">
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mt: 5, alignItems: "center" }}>
+          <Button
+            component="a"
+            href={siteConfig.downloadPath}
+            download
+            variant="contained"
+            color="secondary"
+            startIcon={<DownloadIcon />}
+          >
             Download DriverScanInit.exe
-          </a>
-          <Link href="/" className="text-sm font-semibold text-accent hover:text-accent-2">
-            ← Back home
-          </Link>
-        </div>
-      </div>
+          </Button>
+          <Button component={NextLink} href="/" startIcon={<ArrowBackIcon />} color="primary">
+            Back home
+          </Button>
+        </Stack>
+      </Container>
       <SiteFooter />
-    </main>
+    </Box>
   );
 }

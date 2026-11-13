@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
+import { ThemeRegistry } from "@/components/ThemeRegistry";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -79,7 +80,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     downloadUrl: `${siteConfig.url}${siteConfig.downloadPath}`,
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     description: siteConfig.description,
-    publisher: { "@type": "Organization", name: siteConfig.org, url: siteConfig.orgUrl },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.org,
+      url: siteConfig.orgUrl,
+    },
   };
 
   return (
@@ -87,12 +92,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-bg text-ink">
+      <body className="min-h-full flex flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        <ThemeRegistry>{children}</ThemeRegistry>
       </body>
     </html>
   );

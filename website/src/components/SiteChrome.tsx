@@ -1,61 +1,122 @@
-import Link from "next/link";
+"use client";
+
+import DownloadIcon from "@mui/icons-material/Download";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Link from "@mui/material/Link";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import NextLink from "next/link";
 import { siteConfig } from "@/lib/site";
 
-export function SiteHeader({ tone = "light" }: { tone?: "light" | "overlay" }) {
-  const muted = tone === "overlay" ? "text-white/70 hover:text-white" : "text-muted hover:text-ink";
-  const brand = tone === "overlay" ? "text-white" : "text-ink";
-
+export function SiteHeader() {
   return (
-    <header className="relative z-20 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-5 md:px-8">
-      <Link href="/" className={`font-display text-lg font-bold tracking-[-0.03em] ${brand}`}>
-        {siteConfig.name}
-      </Link>
-      <nav className="flex items-center gap-5 text-sm font-semibold md:gap-7">
-        <Link href="/guide" className={`transition-colors ${muted}`}>
-          Guide
-        </Link>
-        <a
-          href={siteConfig.github}
-          className={`transition-colors ${muted}`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub
-        </a>
-        <a
-          href={siteConfig.downloadPath}
-          download
-          className="btn btn-primary !min-h-9 !px-4 !text-sm"
-        >
-          Download
-        </a>
-      </nav>
-    </header>
+    <AppBar
+      position="sticky"
+      color="transparent"
+      elevation={0}
+      sx={{
+        borderBottom: "1px solid",
+        borderColor: "divider",
+        backdropFilter: "blur(10px)",
+        bgcolor: "rgba(243,245,248,0.85)",
+      }}
+    >
+      <Container maxWidth="lg">
+        <Toolbar disableGutters sx={{ minHeight: 72, gap: 2 }}>
+          <Typography
+            component={NextLink}
+            href="/"
+            variant="h6"
+            sx={{
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              color: "text.primary",
+              textDecoration: "none",
+              mr: "auto",
+            }}
+          >
+            {siteConfig.name}
+          </Typography>
+          <Stack direction="row" spacing={{ xs: 1, sm: 2 }} sx={{ alignItems: "center" }}>
+            <Link
+              component={NextLink}
+              href="/guide"
+              underline="hover"
+              color="text.secondary"
+              sx={{ display: { xs: "none", sm: "inline" }, fontWeight: 600 }}
+            >
+              Guide
+            </Link>
+            <Link
+              href={siteConfig.github}
+              target="_blank"
+              rel="noreferrer"
+              underline="hover"
+              color="text.secondary"
+              sx={{ display: { xs: "none", sm: "inline" }, fontWeight: 600 }}
+            >
+              GitHub
+            </Link>
+            <Button
+              component="a"
+              href={siteConfig.downloadPath}
+              download
+              variant="contained"
+              color="secondary"
+              size="small"
+              startIcon={<DownloadIcon />}
+              sx={{ minHeight: 40 }}
+            >
+              Download
+            </Button>
+          </Stack>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[var(--line)] bg-bg">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">
-        <p>
+    <Box component="footer" sx={{ borderTop: "1px solid", borderColor: "divider", py: 4 }}>
+      <Container
+        maxWidth="lg"
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          gap: 2,
+          justifyContent: "space-between",
+          alignItems: { md: "center" },
+        }}
+      >
+        <Typography variant="body2" color="text.secondary">
           © {new Date().getFullYear()} {siteConfig.org}. {siteConfig.name} for Windows.
-        </p>
-        <div className="flex flex-wrap gap-5">
-          <Link href="/privacy" className="hover:text-ink">
+        </Typography>
+        <Stack direction="row" spacing={3} useFlexGap sx={{ flexWrap: "wrap" }}>
+          <Link component={NextLink} href="/privacy" color="text.secondary" underline="hover">
             Privacy
           </Link>
-          <Link href="/guide" className="hover:text-ink">
+          <Link component={NextLink} href="/guide" color="text.secondary" underline="hover">
             Guide
           </Link>
-          <a href={siteConfig.release} className="hover:text-ink" target="_blank" rel="noreferrer">
+          <Link
+            href={siteConfig.release}
+            target="_blank"
+            rel="noreferrer"
+            color="text.secondary"
+            underline="hover"
+          >
             Releases
-          </a>
-          <a href="/sitemap.xml" className="hover:text-ink">
+          </Link>
+          <Link href="/sitemap.xml" color="text.secondary" underline="hover">
             Sitemap
-          </a>
-        </div>
-      </div>
-    </footer>
+          </Link>
+        </Stack>
+      </Container>
+    </Box>
   );
 }

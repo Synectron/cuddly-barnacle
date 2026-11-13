@@ -1,120 +1,191 @@
-import Link from "next/link";
+"use client";
+
+import DownloadIcon from "@mui/icons-material/Download";
+import MenuBookOutlinedIcon from "@mui/icons-material/MenuBookOutlined";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import NextLink from "next/link";
 import { HeroStage } from "@/components/HeroStage";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { siteConfig } from "@/lib/site";
 
+const steps = [
+  {
+    n: "01",
+    title: "Scan",
+    body: "Map present PnP devices, status codes, and driver versions before you change anything.",
+  },
+  {
+    n: "02",
+    title: "Initiate",
+    body: "Enable and start problem or disabled devices Windows left half-asleep.",
+  },
+  {
+    n: "03",
+    title: "Update",
+    body: "Install Windows Update drivers, then kick Lenovo, Dell, HP, Intel, NVIDIA, or AMD tools.",
+  },
+];
+
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col">
-      <section className="relative isolate min-h-[100svh] overflow-hidden">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(900px 500px at 8% 0%, rgba(15,108,189,0.14), transparent 50%), linear-gradient(180deg, #f8fafc 0%, var(--bg) 42%, #e8eef5 100%)",
+    <Box component="main" sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
+      <SiteHeader />
+
+      <Box
+        sx={{
+          position: "relative",
+          minHeight: { lg: "calc(100svh - 72px)" },
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", lg: "minmax(22rem, 0.92fr) 1.08fr" },
+          background:
+            "radial-gradient(900px 500px at 8% 0%, rgba(15,108,189,0.14), transparent 50%), linear-gradient(180deg, #f8fafc 0%, #f3f5f8 42%, #e8eef5 100%)",
+        }}
+      >
+        <Stack
+          sx={{
+            justifyContent: "center",
+            px: { xs: 3, md: 5 },
+            py: { xs: 6, lg: 8 },
+            pl: { lg: "max(2rem, calc((100vw - 72rem) / 2 + 2rem))" },
+            pr: { lg: 6 },
           }}
-        />
-        <div aria-hidden className="noise pointer-events-none absolute inset-0" />
+        >
+          <Typography variant="overline" color="primary" sx={{ mb: 1.5 }}>
+            Opuskiln utility
+          </Typography>
+          <Typography
+            variant="h1"
+            sx={{ fontSize: { xs: "3.6rem", sm: "5rem", md: "6.5rem" }, color: "text.primary" }}
+          >
+            {siteConfig.name}
+          </Typography>
+          <Typography
+            color="text.secondary"
+            sx={{ mt: 3, maxWidth: 460, fontSize: { xs: "1.1rem", md: "1.25rem" }, lineHeight: 1.6 }}
+          >
+            Scan stuck devices, start dead drivers, and pull the latest updates from Windows and the
+            big OEM/GPU vendors.
+          </Typography>
+          <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5} sx={{ mt: 4 }}>
+            <Button
+              component="a"
+              href={siteConfig.downloadPath}
+              download
+              variant="contained"
+              color="secondary"
+              size="large"
+              startIcon={<DownloadIcon />}
+            >
+              Download for Windows
+            </Button>
+            <Button
+              component={NextLink}
+              href="/guide"
+              variant="outlined"
+              color="secondary"
+              size="large"
+              startIcon={<MenuBookOutlinedIcon />}
+            >
+              How to run
+            </Button>
+          </Stack>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ mt: 2.5, fontFamily: "var(--font-mono)", letterSpacing: "0.04em" }}
+          >
+            v{siteConfig.version} · DriverScanInit.exe · Run as Administrator
+          </Typography>
+        </Stack>
 
-        <SiteHeader />
+        <Box sx={{ minHeight: { xs: 420, lg: "auto" } }}>
+          <HeroStage />
+        </Box>
+      </Box>
 
-        <div className="relative z-10 grid min-h-[calc(100svh-4.5rem)] lg:grid-cols-[minmax(22rem,0.92fr)_1.08fr]">
-          <div className="flex flex-col justify-center px-6 pb-12 pt-8 md:px-10 lg:pl-[max(2rem,calc((100vw-72rem)/2+2rem))] lg:pr-12 lg:pt-4">
-            <p className="anim-1 font-mono text-[11px] uppercase tracking-[0.28em] text-accent">
-              Opuskiln utility
-            </p>
-            <h1 className="anim-1 mt-4 font-display text-[clamp(3.8rem,11vw,7.2rem)] font-extrabold leading-[0.86] tracking-[-0.05em] text-ink">
-              {siteConfig.name}
-            </h1>
-            <p className="anim-2 mt-6 max-w-[28rem] text-[1.15rem] leading-relaxed text-muted md:text-[1.25rem]">
-              Scan stuck devices, start dead drivers, and pull the latest updates from Windows and
-              the big OEM/GPU vendors.
-            </p>
-            <div className="anim-3 mt-9 flex flex-wrap gap-3">
-              <a href={siteConfig.downloadPath} download className="btn btn-primary">
-                Download for Windows
-              </a>
-              <Link href="/guide" className="btn btn-ghost">
-                How to run
-              </Link>
-            </div>
-            <p className="mt-5 font-mono text-xs tracking-wide text-muted">
-              v{siteConfig.version} · DriverScanInit.exe · Run as Administrator
-            </p>
-          </div>
-
-          <div className="relative min-h-[440px] lg:min-h-full">
-            <HeroStage />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-[var(--line)] bg-bg">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8 md:py-24">
-          <div className="max-w-2xl">
-            <p className="font-mono text-[11px] uppercase tracking-[0.24em] text-accent">Workflow</p>
-            <h2 className="mt-3 font-display text-3xl font-bold tracking-[-0.03em] text-ink md:text-5xl">
-              Three moves. One elevated EXE.
-            </h2>
-          </div>
-
-          <div className="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-3">
-            {[
-              {
-                n: "01",
-                title: "Scan",
-                body: "Map present PnP devices, status codes, and driver versions before you change anything.",
-              },
-              {
-                n: "02",
-                title: "Initiate",
-                body: "Enable and start problem or disabled devices Windows left half-asleep.",
-              },
-              {
-                n: "03",
-                title: "Update",
-                body: "Install Windows Update drivers, then kick Lenovo, Dell, HP, Intel, NVIDIA, or AMD tools.",
-              },
-            ].map((item) => (
-              <article key={item.n} className="relative pt-2">
-                <p className="font-mono text-sm text-accent">{item.n}</p>
-                <h3 className="mt-3 font-display text-3xl font-bold tracking-[-0.03em] text-ink">
-                  {item.title}
-                </h3>
-                <p className="mt-3 max-w-sm text-[0.98rem] leading-relaxed text-muted">{item.body}</p>
-              </article>
+      <Box sx={{ borderTop: "1px solid", borderColor: "divider", py: { xs: 8, md: 12 } }}>
+        <Container maxWidth="lg">
+          <Typography variant="overline" color="primary">
+            Workflow
+          </Typography>
+          <Typography variant="h2" sx={{ mt: 1.5, maxWidth: 640, fontSize: { xs: "2rem", md: "3rem" } }}>
+            Three moves. One elevated EXE.
+          </Typography>
+          <Grid container spacing={{ xs: 4, md: 6 }} sx={{ mt: 2 }}>
+            {steps.map((step) => (
+              <Grid key={step.n} size={{ xs: 12, md: 4 }}>
+                <Typography variant="overline" color="primary">
+                  {step.n}
+                </Typography>
+                <Typography variant="h3" sx={{ mt: 1, fontSize: "2rem" }}>
+                  {step.title}
+                </Typography>
+                <Typography color="text.secondary" sx={{ mt: 1.5, maxWidth: 360, lineHeight: 1.7 }}>
+                  {step.body}
+                </Typography>
+              </Grid>
             ))}
-          </div>
-        </div>
-      </section>
+          </Grid>
+        </Container>
+      </Box>
 
-      <section className="relative overflow-hidden border-t border-[var(--line)] bg-ink text-[#edf2f7]">
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-60"
-          style={{
-            background:
-              "radial-gradient(700px 320px at 90% 20%, rgba(15,108,189,0.35), transparent 60%)",
+      <Box
+        sx={{
+          borderTop: "1px solid",
+          borderColor: "divider",
+          bgcolor: "secondary.main",
+          color: "#edf2f7",
+          backgroundImage:
+            "radial-gradient(700px 320px at 90% 20%, rgba(15,108,189,0.35), transparent 60%)",
+          py: { xs: 8, md: 10 },
+        }}
+      >
+        <Container
+          maxWidth="lg"
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
+            alignItems: { md: "center" },
+            justifyContent: "space-between",
           }}
-        />
-        <div className="relative mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-6 py-16 md:flex-row md:items-center md:px-8 md:py-20">
-          <div className="max-w-xl">
-            <h2 className="font-display text-3xl font-bold tracking-[-0.03em] md:text-4xl">
+        >
+          <Box sx={{ maxWidth: 560 }}>
+            <Typography variant="h2" sx={{ fontSize: { xs: "2rem", md: "2.5rem" }, color: "inherit" }}>
               Grab the EXE and run elevated.
-            </h2>
-            <p className="mt-3 text-[#b7c3cf]">
-              Free download. No account. Use <span className="font-mono text-[#9ec5ef]">--update</span>{" "}
+            </Typography>
+            <Typography sx={{ mt: 1.5, color: "#b7c3cf" }}>
+              Free download. No account. Use{" "}
+              <Box component="span" sx={{ fontFamily: "var(--font-mono)", color: "#9ec5ef" }}>
+                --update
+              </Box>{" "}
               when you want Windows Update plus vendor updaters in one pass.
-            </p>
-          </div>
-          <a href={siteConfig.downloadPath} download className="btn btn-primary bg-white !text-ink hover:!bg-accent hover:!text-white">
+            </Typography>
+          </Box>
+          <Button
+            component="a"
+            href={siteConfig.downloadPath}
+            download
+            variant="contained"
+            size="large"
+            startIcon={<DownloadIcon />}
+            sx={{
+              bgcolor: "common.white",
+              color: "secondary.main",
+              "&:hover": { bgcolor: "primary.main", color: "common.white" },
+            }}
+          >
             Get DriverScanInit.exe
-          </a>
-        </div>
-      </section>
+          </Button>
+        </Container>
+      </Box>
 
       <SiteFooter />
-    </main>
+    </Box>
   );
 }

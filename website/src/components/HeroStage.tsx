@@ -1,67 +1,145 @@
+"use client";
+
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import { keyframes } from "@mui/system";
+
 const lines = [
-  { tone: "muted", text: "C:\\> DriverScanInit.exe --update" },
-  { tone: "ok", text: "OK   Intel Iris Xe Graphics" },
-  { tone: "ok", text: "OK   NVMe Storage Controller" },
-  { tone: "warn", text: "FIX  Hidden network adapter · initiating" },
-  { tone: "ok", text: "UPD  Windows Update drivers · 3 queued" },
-  { tone: "ok", text: "UPD  Lenovo System Update · running" },
-  { tone: "muted", text: "Done. Reboot if prompted." },
+  { color: "text.secondary", text: "C:\\> DriverScanInit.exe --update" },
+  { color: "success.main", text: "OK   Intel Iris Xe Graphics" },
+  { color: "success.main", text: "OK   NVMe Storage Controller" },
+  { color: "warning.main", text: "FIX  Hidden network adapter · initiating" },
+  { color: "success.main", text: "UPD  Windows Update drivers · 3 queued" },
+  { color: "success.main", text: "UPD  Lenovo System Update · running" },
+  { color: "text.secondary", text: "Done. Reboot if prompted." },
 ] as const;
+
+const scan = keyframes`
+  0% { top: 8%; opacity: 0; }
+  10% { opacity: 0.85; }
+  90% { opacity: 0.45; }
+  100% { top: 90%; opacity: 0; }
+`;
+
+const fadeUp = keyframes`
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+const blink = keyframes`
+  0%, 45% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+`;
 
 export function HeroStage() {
   return (
-    <div className="relative h-full min-h-[420px] w-full overflow-hidden bg-stage text-term md:min-h-full">
-      <div
+    <Box
+      sx={{
+        position: "relative",
+        height: "100%",
+        minHeight: { xs: 420, lg: "100%" },
+        overflow: "hidden",
+        color: "#c5d0da",
+        bgcolor: "secondary.main",
+        backgroundImage:
+          "radial-gradient(900px 520px at 80% 10%, rgba(15,108,189,0.30), transparent 55%), linear-gradient(165deg, #101820 0%, #15202b 48%, #0d141c 100%)",
+      }}
+    >
+      <Box
         aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(900px 520px at 80% 10%, rgba(15,108,189,0.28), transparent 55%), linear-gradient(165deg, #101820 0%, #15202b 48%, #0d141c 100%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.18]"
-        style={{
+        sx={{
+          position: "absolute",
+          inset: 0,
+          opacity: 0.16,
           backgroundImage:
             "linear-gradient(rgba(197,208,218,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(197,208,218,0.12) 1px, transparent 1px)",
           backgroundSize: "42px 42px",
           maskImage: "radial-gradient(ellipse at 60% 40%, black 20%, transparent 75%)",
         }}
       />
-      <div aria-hidden className="noise absolute inset-0" />
-      <div aria-hidden className="scan-y" />
+      <Box
+        aria-hidden
+        sx={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          height: 2,
+          background: "linear-gradient(90deg, transparent, #5eb1ff, transparent)",
+          animation: `${scan} 4.2s ease-in-out infinite`,
+        }}
+      />
 
-      <div className="relative z-10 flex h-full flex-col justify-between p-6 sm:p-8 md:p-10 lg:p-12">
-        <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.22em] text-term/55">
-          <span>DriverScan console</span>
-          <span className="text-[#5eb1ff]">admin</span>
-        </div>
+      <Stack
+        sx={{
+          position: "relative",
+          zIndex: 1,
+          height: "100%",
+          p: { xs: 3, md: 5 },
+          justifyContent: "space-between",
+        }}
+      >
+        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
+          <Typography
+            variant="overline"
+            sx={{ color: "rgba(197,208,218,0.55)", letterSpacing: "0.22em" }}
+          >
+            DriverScan console
+          </Typography>
+          <Typography variant="overline" sx={{ color: "#5eb1ff", letterSpacing: "0.22em" }}>
+            admin
+          </Typography>
+        </Stack>
 
-        <div className="my-10 space-y-3 font-mono text-[0.92rem] leading-relaxed sm:text-[1rem] md:my-0">
-          {lines.map((line) => (
-            <p
+        <Stack spacing={1.25} sx={{ py: { xs: 5, lg: 0 } }}>
+          {lines.map((line, i) => (
+            <Typography
               key={line.text}
-              className={`term-line ${
-                line.tone === "ok"
-                  ? "text-ok"
-                  : line.tone === "warn"
-                    ? "text-warn"
-                    : "text-term/70"
-              }`}
+              sx={{
+                fontFamily: "var(--font-mono)",
+                fontSize: { xs: "0.92rem", md: "1rem" },
+                color: line.color,
+                opacity: 0,
+                animation: `${fadeUp} 0.55s ease forwards`,
+                animationDelay: `${0.35 + i * 0.2}s`,
+              }}
             >
               {line.text}
-            </p>
+            </Typography>
           ))}
-          <p className="term-line text-term/80">
-            C:\\&gt; <span className="caret" aria-hidden />
-          </p>
-        </div>
+          <Typography
+            sx={{
+              fontFamily: "var(--font-mono)",
+              color: "rgba(197,208,218,0.8)",
+              opacity: 0,
+              animation: `${fadeUp} 0.55s ease forwards`,
+              animationDelay: "1.75s",
+            }}
+          >
+            C:\\&gt;{" "}
+            <Box
+              component="span"
+              aria-hidden
+              sx={{
+                display: "inline-block",
+                width: "0.55ch",
+                height: "1.05em",
+                ml: "2px",
+                verticalAlign: "text-bottom",
+                bgcolor: "#5eb1ff",
+                animation: `${blink} 1.1s steps(1) infinite`,
+              }}
+            />
+          </Typography>
+        </Stack>
 
-        <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-term/45">
+        <Typography
+          variant="overline"
+          sx={{ color: "rgba(197,208,218,0.45)", letterSpacing: "0.2em" }}
+        >
           Windows 10 / 11 · OEM + GPU vendors
-        </div>
-      </div>
-    </div>
+        </Typography>
+      </Stack>
+    </Box>
   );
 }
