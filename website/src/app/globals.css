@@ -1,6 +1,8 @@
-@import "tailwindcss";
+/* Keep Tailwind utilities available, but do not let preflight crush MUI */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
-/* Keep fonts + minimal resets; MUI CssBaseline owns most styling */
 :root {
   --background: #f3f5f8;
   --foreground: #0e151b;
@@ -21,8 +23,5 @@ body {
 
 a {
   color: inherit;
-}
-
-@layer base {
-  /* Ensure MUI styles win over Tailwind preflight conflicts when layered */
+  text-decoration: none;
 }

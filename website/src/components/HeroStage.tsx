@@ -38,7 +38,7 @@ export function HeroStage() {
       sx={{
         position: "relative",
         height: "100%",
-        minHeight: { xs: 420, lg: "100%" },
+        minHeight: { xs: 460, md: "100%" },
         overflow: "hidden",
         color: "#c5d0da",
         bgcolor: "secondary.main",
@@ -75,11 +75,13 @@ export function HeroStage() {
           position: "relative",
           zIndex: 1,
           height: "100%",
-          p: { xs: 3, md: 5 },
-          justifyContent: "space-between",
+          boxSizing: "border-box",
+          p: { xs: 3, md: 4, lg: 5 },
+          gap: { xs: 3, md: 2 },
+          justifyContent: { xs: "flex-start", md: "center" },
         }}
       >
-        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
+        <Stack direction="row" sx={{ justifyContent: "space-between", flexShrink: 0 }}>
           <Typography
             variant="overline"
             sx={{ color: "rgba(197,208,218,0.55)", letterSpacing: "0.22em" }}
@@ -91,15 +93,17 @@ export function HeroStage() {
           </Typography>
         </Stack>
 
-        <Stack spacing={1.25} sx={{ py: { xs: 5, lg: 0 } }}>
+        <Stack spacing={{ xs: 1, md: 1.1 }} sx={{ flexShrink: 1, minHeight: 0 }}>
           {lines.map((line, i) => (
             <Typography
               key={line.text}
               sx={{
                 fontFamily: "var(--font-mono)",
-                fontSize: { xs: "0.92rem", md: "1rem" },
+                fontSize: { xs: "0.85rem", sm: "0.9rem", md: "0.95rem" },
+                lineHeight: 1.4,
                 color: line.color,
                 opacity: 0,
+                overflowWrap: "anywhere",
                 animation: `${fadeUp} 0.55s ease forwards`,
                 animationDelay: `${0.35 + i * 0.2}s`,
               }}
@@ -135,7 +139,12 @@ export function HeroStage() {
 
         <Typography
           variant="overline"
-          sx={{ color: "rgba(197,208,218,0.45)", letterSpacing: "0.2em" }}
+          sx={{
+            color: "rgba(197,208,218,0.45)",
+            letterSpacing: "0.18em",
+            flexShrink: 0,
+            pt: { md: 1 },
+          }}
         >
           Windows 10 / 11 · OEM + GPU vendors
         </Typography>

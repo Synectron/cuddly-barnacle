@@ -39,9 +39,10 @@ export default function HomePage() {
       <Box
         sx={{
           position: "relative",
-          minHeight: { lg: "calc(100svh - 72px)" },
+          minHeight: { md: "calc(100svh - 72px)" },
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", lg: "minmax(22rem, 0.92fr) 1.08fr" },
+          gridTemplateColumns: { xs: "1fr", md: "minmax(18rem, 0.95fr) 1.05fr" },
+          overflow: "visible",
           background:
             "radial-gradient(900px 500px at 8% 0%, rgba(15,108,189,0.14), transparent 50%), linear-gradient(180deg, #f8fafc 0%, #f3f5f8 42%, #e8eef5 100%)",
         }}
@@ -49,10 +50,12 @@ export default function HomePage() {
         <Stack
           sx={{
             justifyContent: "center",
-            px: { xs: 3, md: 5 },
-            py: { xs: 6, lg: 8 },
+            px: { xs: 3, md: 4, lg: 5 },
+            py: { xs: 5, md: 6, lg: 8 },
             pl: { lg: "max(2rem, calc((100vw - 72rem) / 2 + 2rem))" },
-            pr: { lg: 6 },
+            pr: { md: 4, lg: 6 },
+            minWidth: 0,
+            overflow: "visible",
           }}
         >
           <Typography variant="overline" color="primary" sx={{ mb: 1.5 }}>
@@ -60,7 +63,18 @@ export default function HomePage() {
           </Typography>
           <Typography
             variant="h1"
-            sx={{ fontSize: { xs: "3.6rem", sm: "5rem", md: "6.5rem" }, color: "text.primary" }}
+            sx={{
+              fontSize: {
+                xs: "clamp(2.75rem, 12vw, 3.75rem)",
+                sm: "clamp(3.5rem, 9vw, 5rem)",
+                md: "clamp(4.25rem, 6.5vw, 5.75rem)",
+              },
+              color: "text.primary",
+              lineHeight: 1.12,
+              py: "0.06em",
+              overflow: "visible",
+              wordBreak: "break-word",
+            }}
           >
             {siteConfig.name}
           </Typography>
@@ -103,7 +117,7 @@ export default function HomePage() {
           </Typography>
         </Stack>
 
-        <Box sx={{ minHeight: { xs: 420, lg: "auto" } }}>
+        <Box sx={{ minHeight: { xs: 460, md: "auto" }, minWidth: 0 }}>
           <HeroStage />
         </Box>
       </Box>
@@ -175,9 +189,10 @@ export default function HomePage() {
             size="large"
             startIcon={<DownloadIcon />}
             sx={{
-              bgcolor: "common.white",
-              color: "secondary.main",
-              "&:hover": { bgcolor: "primary.main", color: "common.white" },
+              flexShrink: 0,
+              bgcolor: "#ffffff",
+              color: "#101820",
+              "&:hover": { bgcolor: "#0f6cbd", color: "#ffffff" },
             }}
           >
             Get DriverScanInit.exe

@@ -33,18 +33,21 @@ export const theme = createTheme({
     h1: {
       fontFamily: "var(--font-display), 'Bricolage Grotesque', system-ui, sans-serif",
       fontWeight: 800,
-      letterSpacing: "-0.045em",
-      lineHeight: 0.9,
+      letterSpacing: "-0.04em",
+      lineHeight: 1.12,
+      overflow: "visible",
     },
     h2: {
       fontFamily: "var(--font-display), 'Bricolage Grotesque', system-ui, sans-serif",
       fontWeight: 700,
       letterSpacing: "-0.03em",
+      lineHeight: 1.15,
     },
     h3: {
       fontFamily: "var(--font-display), 'Bricolage Grotesque', system-ui, sans-serif",
       fontWeight: 700,
       letterSpacing: "-0.03em",
+      lineHeight: 1.2,
     },
     button: {
       textTransform: "none",
@@ -63,12 +66,32 @@ export const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
-        root: {
+        root: ({ ownerState }) => ({
           borderRadius: 8,
           minHeight: 48,
           px: 2.5,
           boxShadow: "none",
-        },
+          // cssVariables can drop contrastText on secondary; force readable CTAs
+          ...(ownerState.variant === "contained" &&
+            ownerState.color === "secondary" && {
+              color: "#f4f7fa",
+              backgroundColor: "#101820",
+              "&:hover": {
+                color: "#f4f7fa",
+                backgroundColor: "#1a2733",
+                boxShadow: "none",
+              },
+            }),
+          ...(ownerState.variant === "outlined" &&
+            ownerState.color === "secondary" && {
+              color: "#101820",
+              borderColor: "rgba(16, 24, 32, 0.55)",
+              "&:hover": {
+                borderColor: "#101820",
+                backgroundColor: "rgba(16, 24, 32, 0.04)",
+              },
+            }),
+        }),
         contained: {
           boxShadow: "none",
           "&:hover": { boxShadow: "none" },
