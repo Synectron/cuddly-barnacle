@@ -743,10 +743,42 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser.add_argument("--detect", action="store_true", help="Show detected OEM/GPU hardware")
     parser.add_argument("--export", metavar="PATH", help="Export scan JSON to PATH")
     parser.add_argument("--json", action="store_true", help="Print scan as JSON")
+    parser.add_argument(
+        "--cli",
+        action="store_true",
+        help="Use the terminal interactive menu instead of the desktop UI",
+    )
+    parser.add_argument(
+        "--gui",
+        action="store_true",
+        help="Force the desktop UI (default when no other flags are passed)",
+    )
     args = parser.parse_args(argv)
 
-    # No flags -> interactive
-    if not any(
+    wants_cli_action = any(
+        [
+            args.scan,
+            args.problems,
+            args.initiate,
+            args.device,
+            args.list_updates,
+            args.update,
+            args.update_wu,
+            args.update_vendors,
+            args.detect,
+            args.export,
+            args.json,
+            args.cli,
+        ]
+    )
+
+    # Default / --gui → desktop UI (no console window when built with --noconsole)
+    if args.gui or not wants_cli_action:
+        from driver_gui import run_gui
+
+        return run_gui()
+
+    if args.cli and not any(
         [
             args.scan,
             args.problems,

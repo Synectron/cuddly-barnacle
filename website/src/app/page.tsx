@@ -134,7 +134,8 @@ export default function HomePage() {
               letterSpacing: "0.04em",
             }}
           >
-            v{siteConfig.version} · DriverScanInit.exe · Run as Administrator
+            v{siteConfig.version} · Desktop UI · Run as Administrator for
+            updates
           </Typography>
         </Stack>
 

@@ -26,10 +26,18 @@ Windows utility to **scan** PnP devices, **initiate** problem/disabled drivers, 
 
 ## Usage
 
-Interactive menu (no flags):
+Desktop UI (default — no terminal window):
 
 ```bat
 DriverScanInit.exe
+```
+
+Right-click → **Run as administrator** for initiate/update actions (or use the in-app **Run as Administrator** button).
+
+Terminal menu (optional):
+
+```bat
+DriverScanInit.exe --cli
 ```
 
 CLI:
@@ -69,8 +77,10 @@ Build the EXE (requires Python + PyInstaller):
 
 ```bat
 pip install pyinstaller
-pyinstaller --onefile --console --name DriverScanInit driver_scan.py
+pyinstaller --noconfirm DriverScanInit.spec
 ```
+
+The spec builds a **windowed** EXE (`console=False`) with the desktop UI. Pass CLI flags for scripting; use `--cli` for the old terminal menu.
 
 Output: `dist\DriverScanInit.exe`
 

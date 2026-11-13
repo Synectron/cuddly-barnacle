@@ -18,12 +18,12 @@ const steps = [
     body: `Get DriverScanInit.exe from the homepage (v${siteConfig.version}).`,
   },
   {
-    title: "Run as Administrator",
-    body: "Right-click → Run as administrator. Elevation is required to initiate and update drivers.",
+    title: "Open the desktop UI",
+    body: "Double-click DriverScanInit.exe — it opens a window (no terminal). Use Run as Administrator, or the in-app elevate button, before initiate/update.",
   },
   {
     title: "Update everything",
-    body: "Menu option 8, or DriverScanInit.exe --update for Windows Update plus OEM/GPU vendors.",
+    body: "Click Update all in the app, or run DriverScanInit.exe --update for Windows Update plus OEM/GPU vendors.",
   },
   {
     title: "Reboot if prompted",
@@ -33,29 +33,45 @@ const steps = [
 
 export default function GuidePage() {
   return (
-    <Box component="main" sx={{ display: "flex", flexDirection: "column", flex: 1 }}>
+    <Box
+      component="main"
+      sx={{ display: "flex", flexDirection: "column", flex: 1 }}
+    >
       <SiteHeader />
       <Container maxWidth="md" sx={{ py: { xs: 6, md: 10 }, flex: 1 }}>
         <Typography variant="overline" color="primary">
           Guide
         </Typography>
-        <Typography variant="h1" sx={{ mt: 1, fontSize: { xs: "2.6rem", md: "3.8rem" } }}>
+        <Typography
+          variant="h1"
+          sx={{ mt: 1, fontSize: { xs: "2.6rem", md: "3.8rem" } }}
+        >
           How to run DriverScan
         </Typography>
-        <Typography color="text.secondary" sx={{ mt: 2, fontSize: "1.15rem", lineHeight: 1.7 }}>
-          Windows 10/11. Keep internet on so Windows Update and vendor tools can download packages.
+        <Typography
+          color="text.secondary"
+          sx={{ mt: 2, fontSize: "1.15rem", lineHeight: 1.7 }}
+        >
+          Windows 10/11. Keep internet on so Windows Update and vendor tools can
+          download packages.
         </Typography>
 
         <Stack spacing={4} sx={{ mt: 6 }}>
           {steps.map((step, i) => (
-            <Box key={step.title} sx={{ borderTop: "1px solid", borderColor: "divider", pt: 3 }}>
+            <Box
+              key={step.title}
+              sx={{ borderTop: "1px solid", borderColor: "divider", pt: 3 }}
+            >
               <Typography variant="overline" color="primary">
                 Step {String(i + 1).padStart(2, "0")}
               </Typography>
               <Typography variant="h3" sx={{ mt: 1, fontSize: "1.8rem" }}>
                 {step.title}
               </Typography>
-              <Typography color="text.secondary" sx={{ mt: 1.25, lineHeight: 1.7 }}>
+              <Typography
+                color="text.secondary"
+                sx={{ mt: 1.25, lineHeight: 1.7 }}
+              >
                 {step.body}
               </Typography>
             </Box>
@@ -64,7 +80,11 @@ export default function GuidePage() {
 
         <Paper
           variant="outlined"
-          sx={{ mt: 6, p: { xs: 2.5, md: 3.5 }, bgcolor: "rgba(255,255,255,0.7)" }}
+          sx={{
+            mt: 6,
+            p: { xs: 2.5, md: 3.5 },
+            bgcolor: "rgba(255,255,255,0.7)",
+          }}
         >
           <Typography variant="h3" sx={{ fontSize: "1.25rem" }}>
             Useful commands
@@ -81,15 +101,19 @@ export default function GuidePage() {
               color: "text.primary",
             }}
           >
-{`DriverScanInit.exe --detect
+            {`DriverScanInit.exe
+DriverScanInit.exe --cli
+DriverScanInit.exe --detect
 DriverScanInit.exe --list-updates
-DriverScanInit.exe --update-wu
-DriverScanInit.exe --update-vendors
 DriverScanInit.exe --update`}
           </Box>
         </Paper>
 
-        <Stack direction={{ xs: "column", sm: "row" }} spacing={2} sx={{ mt: 5, alignItems: "center" }}>
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={2}
+          sx={{ mt: 5, alignItems: "center" }}
+        >
           <Button
             component="a"
             href={siteConfig.downloadPath}
@@ -100,7 +124,12 @@ DriverScanInit.exe --update`}
           >
             Download DriverScanInit.exe
           </Button>
-          <Button component={NextLink} href="/" startIcon={<ArrowBackIcon />} color="primary">
+          <Button
+            component={NextLink}
+            href="/"
+            startIcon={<ArrowBackIcon />}
+            color="primary"
+          >
             Back home
           </Button>
         </Stack>
