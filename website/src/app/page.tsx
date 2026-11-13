@@ -1,169 +1,100 @@
 import Link from "next/link";
+import { HeroStage } from "@/components/HeroStage";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { siteConfig } from "@/lib/site";
 
 export default function HomePage() {
   return (
-    <main className="relative flex-1 overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(1200px 700px at 78% 18%, rgba(47,214,162,0.18), transparent 55%), radial-gradient(900px 600px at 12% 88%, rgba(47,140,214,0.14), transparent 50%), linear-gradient(160deg, #061018 0%, #0a1a24 45%, #07131c 100%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.22]"
-        style={{
-          backgroundImage:
-            "linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-          maskImage:
-            "radial-gradient(ellipse at 70% 35%, black 0%, transparent 70%)",
-        }}
-      />
+    <main className="flex flex-1 flex-col">
+      <div className="relative isolate min-h-[100svh] overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(1000px 520px at 12% -10%, rgba(11,127,134,0.12), transparent 55%), linear-gradient(180deg, #f7f9fb 0%, var(--paper) 40%, #e8eef4 100%)",
+          }}
+        />
 
-      <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6 md:px-8">
-        <Link href="/" className="font-[family-name:var(--font-display)] text-xl font-bold tracking-tight text-mist">
-          {siteConfig.name}
-        </Link>
-        <nav className="flex items-center gap-5 text-sm text-muted">
-          <Link href="/guide" className="transition hover:text-mist">
-            Guide
-          </Link>
-          <a
-            href={siteConfig.github}
-            className="transition hover:text-mist"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
+        <SiteHeader />
+
+        <section className="relative z-10 grid min-h-[calc(100svh-4.75rem)] w-full items-stretch md:grid-cols-[minmax(0,36rem)_1fr] lg:grid-cols-[minmax(0,40rem)_1fr]">
+          <div className="mx-auto flex w-full max-w-6xl flex-col justify-center px-6 py-10 md:mx-0 md:ml-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))] md:max-w-none md:px-0 md:py-16 md:pr-12">
+            <h1 className="anim-rise font-display text-[clamp(3.6rem,10vw,6.8rem)] font-extrabold leading-[0.88] tracking-[-0.045em] text-ink">
+              {siteConfig.name}
+            </h1>
+            <p className="anim-rise-2 mt-6 max-w-md text-lg leading-relaxed text-muted md:text-xl">
+              Scan, start, and update Windows drivers — including OEM and GPU
+              vendors.
+            </p>
+            <div className="anim-rise-3 mt-9 flex flex-wrap items-center gap-3">
+              <a href={siteConfig.downloadPath} download className="btn-primary">
+                Download for Windows
+              </a>
+              <Link href="/guide" className="btn-secondary">
+                How to run
+              </Link>
+            </div>
+            <p className="mt-5 font-mono text-xs tracking-wide text-muted">
+              v{siteConfig.version} · DriverScanInit.exe · Run as Administrator
+            </p>
+          </div>
+
+          <div className="relative min-h-[360px] w-full md:min-h-full">
+            <HeroStage />
+          </div>
+        </section>
+      </div>
+
+      <section className="border-t border-[var(--line)] bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:px-8">
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-accent">
+            What it does
+          </p>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl font-bold tracking-tight text-ink md:text-4xl">
+            One utility for stuck devices and outdated drivers.
+          </h2>
+          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-12">
+            {[
+              {
+                title: "Scan",
+                body: "Inventory present PnP devices, status codes, and driver versions in one pass.",
+              },
+              {
+                title: "Initiate",
+                body: "Enable and start problem or disabled devices when Windows leaves them stuck.",
+              },
+              {
+                title: "Update",
+                body: "Pull Windows Update drivers and run Lenovo, Dell, HP, Intel, NVIDIA, and AMD updaters.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="border-t border-[var(--line)] pt-5">
+                <h3 className="font-display text-2xl font-bold text-ink">{item.title}</h3>
+                <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[var(--line)] bg-paper-deep/60">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-14 md:flex-row md:items-center md:px-8">
+          <div>
+            <h2 className="font-display text-2xl font-bold tracking-tight text-ink md:text-3xl">
+              Free Windows download
+            </h2>
+            <p className="mt-2 max-w-xl text-muted">
+              No installer account. Run elevated, then use --update for Windows Update plus vendor tools.
+            </p>
+          </div>
+          <a href={siteConfig.downloadPath} download className="btn-primary shrink-0">
+            Get DriverScanInit.exe
           </a>
-        </nav>
-      </header>
-
-      <section className="relative z-10 mx-auto grid min-h-[calc(100vh-5.5rem)] w-full max-w-6xl items-center gap-12 px-6 pb-16 pt-6 md:grid-cols-[1.05fr_0.95fr] md:px-8 md:pb-20">
-        <div>
-          <p className="anim-rise mb-4 font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.28em] text-signal">
-            Opuskiln · Windows utility
-          </p>
-          <h1 className="anim-rise-delay font-[family-name:var(--font-display)] text-[clamp(3.4rem,9vw,6.4rem)] font-extrabold leading-[0.92] tracking-[-0.04em] text-mist">
-            {siteConfig.name}
-          </h1>
-          <p className="anim-rise-delay-2 mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
-            Scan devices, start stalled drivers, and pull the latest updates from
-            Windows Update plus Lenovo, Dell, HP, Intel, NVIDIA, and AMD.
-          </p>
-          <div className="anim-rise-delay-2 mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href={siteConfig.downloadPath}
-              download
-              className="inline-flex items-center justify-center rounded-md bg-signal px-6 py-3.5 text-base font-bold text-ink transition hover:bg-signal-deep"
-            >
-              Download for Windows
-            </a>
-            <Link
-              href="/guide"
-              className="inline-flex items-center justify-center rounded-md border border-[var(--line)] px-6 py-3.5 text-base font-medium text-mist transition hover:border-signal/40 hover:text-signal"
-            >
-              How to run
-            </Link>
-          </div>
-          <p className="mt-4 font-[family-name:var(--font-mono)] text-xs text-muted">
-            v{siteConfig.version} · DriverScanInit.exe · Run as Administrator
-          </p>
-        </div>
-
-        <div className="anim-rise-delay relative isolate min-h-[320px] md:min-h-[460px]">
-          <div
-            aria-hidden
-            className="pulse-ring absolute left-1/2 top-1/2 h-[78%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-signal/30"
-          />
-          <div className="absolute inset-0 overflow-hidden rounded-[1.25rem] border border-[var(--line)] bg-panel/80 shadow-[0_0_80px_var(--glow)]">
-            <div
-              aria-hidden
-              className="scan-sweep absolute inset-x-0 h-1/3 bg-gradient-to-b from-transparent via-signal/25 to-transparent"
-            />
-            <div className="relative flex h-full flex-col justify-between p-6 md:p-8">
-              <div className="flex items-center justify-between font-[family-name:var(--font-mono)] text-[11px] uppercase tracking-[0.2em] text-muted">
-                <span>Live device plane</span>
-                <span className="text-signal">scan active</span>
-              </div>
-              <div className="space-y-3 font-[family-name:var(--font-mono)] text-sm leading-relaxed text-mist/90">
-                <p>
-                  <span className="text-signal">OK</span> Intel Iris Xe Graphics
-                </p>
-                <p>
-                  <span className="text-signal">OK</span> NVMe Storage Controller
-                </p>
-                <p>
-                  <span className="text-warn">FIX</span> Hidden network adapter
-                </p>
-                <p>
-                  <span className="text-signal">UPD</span> Lenovo System Update ·
-                  queued
-                </p>
-                <p>
-                  <span className="text-signal">UPD</span> Intel DSA · launching
-                </p>
-              </div>
-              <div className="border-t border-[var(--line)] pt-4 font-[family-name:var(--font-mono)] text-xs text-muted">
-                --update · Windows Update + OEM/GPU vendors
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      <section className="relative z-10 border-t border-[var(--line)] bg-[#050e14]/60">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3 md:px-8">
-          {[
-            {
-              title: "Scan",
-              body: "Inventory present PnP devices, status codes, and driver versions in one pass.",
-            },
-            {
-              title: "Initiate",
-              body: "Enable and start problem or disabled devices when Windows leaves them stuck.",
-            },
-            {
-              title: "Update",
-              body: "Pull Windows Update drivers and run OEM/GPU updaters for Lenovo, Dell, HP, Intel, NVIDIA, AMD.",
-            },
-          ].map((item) => (
-            <div key={item.title}>
-              <h2 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-tight text-mist">
-                {item.title}
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted">{item.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <footer className="relative z-10 border-t border-[var(--line)]">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-8 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.org}. {siteConfig.name} for
-            Windows.
-          </p>
-          <div className="flex gap-5">
-            <Link href="/privacy" className="hover:text-mist">
-              Privacy
-            </Link>
-            <Link href="/guide" className="hover:text-mist">
-              Guide
-            </Link>
-            <a href={siteConfig.release} className="hover:text-mist" target="_blank" rel="noreferrer">
-              Releases
-            </a>
-            <a href="/sitemap.xml" className="hover:text-mist">
-              Sitemap
-            </a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
